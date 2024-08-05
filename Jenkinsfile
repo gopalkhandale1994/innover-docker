@@ -9,15 +9,15 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'docker build -t innover-nginx-image .'
+                sh 'docker build -t innover-image .'
             }
         }
         stage('Deploy') {
             steps {
                 sh '''
-                docker stop innover-nginx-container || true
-                docker rm innover-nginx-container || true
-                docker run -d -p 8000:80 --name innover-nginx-container innover-nginx-image
+                docker stop innover-container || true
+                docker rm innover-container || true
+                docker run -d -p 8000:80 --name innover-container innover-image
                 '''
             }
         }
